@@ -1,0 +1,8 @@
+<RCC>
+  <qresource>
+    <file>images/audio_upload.png</file>
+    <file>images/icon.png</file>
+    <file>images/real_time_speech.png</file>
+    <file>images/voice_recording.png</file>
+  </qresource>
+</RCC>
