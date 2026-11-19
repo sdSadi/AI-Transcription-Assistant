@@ -1,17 +1,17 @@
 # Main program file to run to open the app
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from ui_userInterface import Ui_MainWindow
+from mainWindow import MainWindow
 import resource_rc  # Load all the resource assets
 
 # Create instance of Qt application
 app = QApplication(sys.argv)
 
-# Create the base window container and populate it with ui layout
-window = QMainWindow()
-ui = Ui_MainWindow()
-ui.setupUi(window)
-
 # load the window and start the application event loop
+window = MainWindow()
 window.show()
+
 sys.exit(app.exec())
+
+# pyside6-uic userInterface.ui -o ui_userInterface.py
+# pyside6-rcc resources.qrc -o resource_rc.py

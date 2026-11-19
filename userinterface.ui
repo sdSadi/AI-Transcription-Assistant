@@ -230,8 +230,8 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
-              <height>200</height>
+              <width>240</width>
+              <height>240</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -275,8 +275,8 @@ background-color: transparent;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
-              <height>200</height>
+              <width>240</width>
+              <height>240</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -320,8 +320,8 @@ background-color: transparent;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
-              <height>200</height>
+              <width>240</width>
+              <height>240</height>
              </size>
             </property>
             <property name="styleSheet">
