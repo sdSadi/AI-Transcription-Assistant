@@ -331,12 +331,6 @@ background-color: transparent;</string>
 	padding-top: 140px;
 	font: 700 9pt &quot;Arial Rounded MT Bold&quot;;
 	background-color: transparent;
-}
-QPushButton: hover {
-	min-width: 210px;
-	min-height: 210px;
-	max-width: 210px;
-	max-height: 210px;
 }</string>
             </property>
             <property name="text">

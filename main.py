@@ -1,16 +1,18 @@
-# Main program file to run to open the app
+# Import sys for command-line arguments and program exit
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
-from mainWindow import MainWindow
-import resource_rc  # Load all the resource assets
+
+from PySide6.QtWidgets import QApplication  # Manages the application and its event loop
+from mainWindow import MainWindow  # Import custom main window class
+import resource_rc  # Load compiled Qt resources
 
 # Create instance of Qt application
 app = QApplication(sys.argv)
 
-# load the window and start the application event loop
+# Create and display the main window
 window = MainWindow()
 window.show()
 
+# Start the event loop and exit when the application closes
 sys.exit(app.exec())
 
 # pyside6-uic userInterface.ui -o ui_userInterface.py
