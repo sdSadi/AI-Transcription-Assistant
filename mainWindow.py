@@ -21,13 +21,24 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # Let MainWindow detect events happening in the audio upload button
-        self.ui.btn_audioUpload.installEventFilter(self)
+        # List of buttons which will have hover animation
+        self.animated_buttons = [
+            self.ui.btn_audioUpload,
+            self.ui.btn_voiceRecord,
+            self.ui.btn_realTime,
+        ]
+
+        # Install an Event Filter on each button
+        for button in self.animated_buttons:
+            button.installEventFilter(self)
+
+        # Store a seperate animation for each button
+        self.animations = {}
 
     def eventFilter(self, watched, event):
 
-        # Checks whether the event belongs to the Audio Upload button
-        if watched is self.ui.btn_audioUpload:
+        # Checks whether the event belongs to any of the input button
+        if watched in self.animated_buttons:
 
             # Mouse enters the button
             if event.type() == QEvent.Type.Enter:
@@ -45,32 +56,31 @@ class MainWindow(QMainWindow):
     def expand_button(self, button):
 
         # Create an animation for the button's size property
-        animation = QPropertyAnimation(button, b"size")
+        self.animations[button] = QPropertyAnimation(button, b"size")
+        animation = self.animations[button]
 
-        animation.setDuration(500)  # Set animation duration to 500ms
+        animation.setDuration(180)  # Set animation duration to 500ms
 
         # Define the initial and financial button dimensions
-        animation.setStartValue(QSize(200, 200))
+        animation.setStartValue(button.size())
         animation.setEndValue(QSize(204, 204))
 
         # Make the animation slow down in the end for smooth effect
-        animation.setEasingCurve(QEasingCurve.Type.OutCubic)
+        animation.setEasingCurve(QEasingCurve.Type.OutQuint)
 
-        # Keep the animation alive so it does  not stop when the function ends
-        self.animation = animation
         animation.start()  # Start the animation
 
     def shrink_button(
         self, button
     ):  # reverse the expand animation when cursor leaves the button
-        animation = QPropertyAnimation(button, b"size")
+        self.animations[button] = QPropertyAnimation(button, b"size")
+        animation = self.animations[button]
 
-        animation.setDuration(500)
+        animation.setDuration(180)
 
-        animation.setStartValue(QSize(204, 204))
+        animation.setStartValue(button.size())
         animation.setEndValue(QSize(200, 200))
 
-        animation.setEasingCurve(QEasingCurve.Type.OutCubic)
+        animation.setEasingCurve(QEasingCurve.Type.OutQuint)
 
-        self.animation = animation
         animation.start()
