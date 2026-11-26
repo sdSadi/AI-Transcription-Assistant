@@ -8,6 +8,7 @@ from PySide6.QtCore import (
     QPropertyAnimation,
     QEasingCurve,
     QSize,
+    QRect,
 )  # Import Qt features
 
 
@@ -28,12 +29,13 @@ class MainWindow(QMainWindow):
             self.ui.btn_realTime,
         ]
 
+        # Store a seperate animation and button
+        self.animations = {}
+        self.original_geometry = {}
+
         # Install an Event Filter on each button
         for button in self.animated_buttons:
             button.installEventFilter(self)
-
-        # Store a seperate animation for each button
-        self.animations = {}
 
     def eventFilter(self, watched, event):
 
@@ -42,6 +44,8 @@ class MainWindow(QMainWindow):
 
             # Mouse enters the button
             if event.type() == QEvent.Type.Enter:
+                if watched not in self.original_geometry:
+                    self.original_geometry[watched] = watched.geometry()
                 print("Mouse entered!")
                 self.expand_button(watched)
 
@@ -55,31 +59,45 @@ class MainWindow(QMainWindow):
 
     def expand_button(self, button):
 
+        rect = button.geometry()
+        original = self.original_geometry[button]
+        expand_rect = QRect(
+            original.x() - 2,
+            original.y() - 2,
+            original.width() + 4,
+            original.height() + 4,
+        )
+
         # Create an animation for the button's size property
-        self.animations[button] = QPropertyAnimation(button, b"size")
+        self.animations[button] = QPropertyAnimation(button, b"geometry")
         animation = self.animations[button]
 
         animation.setDuration(180)  # Set animation duration to 500ms
 
         # Define the initial and financial button dimensions
-        animation.setStartValue(button.size())
-        animation.setEndValue(QSize(204, 204))
+        animation.setStartValue(rect)
+        animation.setEndValue(expand_rect)
 
         # Make the animation slow down in the end for smooth effect
         animation.setEasingCurve(QEasingCurve.Type.OutQuint)
 
         animation.start()  # Start the animation
 
+        print("Current:", rect)
+        print("Original:", original)
+        print("Expanded:", expand_rect)
+
     def shrink_button(
         self, button
     ):  # reverse the expand animation when cursor leaves the button
-        self.animations[button] = QPropertyAnimation(button, b"size")
+        self.animations[button] = QPropertyAnimation(button, b"geometry")
         animation = self.animations[button]
+        original = self.original_geometry[button]
 
         animation.setDuration(180)
 
-        animation.setStartValue(button.size())
-        animation.setEndValue(QSize(200, 200))
+        animation.setStartValue(button.geometry())
+        animation.setEndValue(original)
 
         animation.setEasingCurve(QEasingCurve.Type.OutQuint)
 
