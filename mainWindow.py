@@ -62,24 +62,24 @@ class MainWindow(QMainWindow):
         rect = button.geometry()
         original = self.original_geometry[button]
         expand_rect = QRect(
-            original.x() - 2,
-            original.y() - 2,
-            original.width() + 4,
-            original.height() + 4,
+            original.x() - 5,
+            original.y() - 5,
+            original.width() + 10,
+            original.height() + 10,
         )
 
         # Create an animation for the button's size property
         self.animations[button] = QPropertyAnimation(button, b"geometry")
         animation = self.animations[button]
 
-        animation.setDuration(180)  # Set animation duration to 500ms
+        animation.setDuration(250)  # Set animation duration to 500ms
 
         # Define the initial and financial button dimensions
         animation.setStartValue(rect)
         animation.setEndValue(expand_rect)
 
         # Make the animation slow down in the end for smooth effect
-        animation.setEasingCurve(QEasingCurve.Type.OutQuint)
+        animation.setEasingCurve(QEasingCurve.Type.OutQuad)
 
         animation.start()  # Start the animation
 
@@ -94,11 +94,11 @@ class MainWindow(QMainWindow):
         animation = self.animations[button]
         original = self.original_geometry[button]
 
-        animation.setDuration(180)
+        animation.setDuration(250)
 
         animation.setStartValue(button.geometry())
         animation.setEndValue(original)
 
-        animation.setEasingCurve(QEasingCurve.Type.OutQuint)
+        animation.setEasingCurve(QEasingCurve.Type.OutQuad)
 
         animation.start()
