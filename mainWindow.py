@@ -29,13 +29,54 @@ class MainWindow(QMainWindow):
             self.ui.btn_realTime,
         ]
 
+        # Install an Event Filter on each button
+        for button in self.animated_buttons:
+            button.installEventFilter(self)
+
         # Store a seperate animation and button
         self.animations = {}
         self.original_geometry = {}
 
-        # Install an Event Filter on each button
-        for button in self.animated_buttons:
-            button.installEventFilter(self)
+        self.is_enabled = True
+
+        self.ui.btn_collapse.clicked.connect(self.toggle_state)
+
+        # List of all sidebar contents to hide when closing the sidebar
+        self.sidebar_contents = [
+            self.ui.btn_userManual,
+            self.ui.btn_settings,
+            self.ui.label_files,
+            self.ui.tree_fileManager,
+        ]
+
+    def toggle_state(self):
+
+        # Log the action based on current state before switched
+        if self.is_enabled:
+            self.change_width(self.ui.frame_sidebar, 50, False)
+        else:
+            self.change_width(self.ui.frame_sidebar, 187, True)
+
+        # Flip the state upon a click
+        self.is_enabled = not self.is_enabled
+
+    def change_width(self, sidebar, target_width, visibility):
+
+        self.sidebar_animation = QPropertyAnimation(sidebar, b"maximumWidth")
+
+        self.sidebar_animation.setDuration(300)
+
+        self.sidebar_animation.setStartValue(sidebar.width())  # Retrieve current width
+        self.sidebar_animation.setEndValue(target_width)
+
+        self.sidebar_animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
+
+        # Hide all the contents inside the sidebar
+        for content in self.sidebar_contents:
+            content.setVisible(visibility)
+
+        self.sidebar_animation.start()
+        self.original_geometry.clear()  # Ensure new original position set everytime to avoid bugs
 
     def eventFilter(self, watched, event):
 
@@ -46,12 +87,10 @@ class MainWindow(QMainWindow):
             if event.type() == QEvent.Type.Enter:
                 if watched not in self.original_geometry:
                     self.original_geometry[watched] = watched.geometry()
-                print("Mouse entered!")
                 self.expand_button(watched)
 
             # Mouse leaves the button
             elif event.type() == QEvent.Type.Leave:
-                print("Mouse left!")
                 self.shrink_button(watched)
 
         # Allow Qt to continue processing the event normally
@@ -82,10 +121,6 @@ class MainWindow(QMainWindow):
         animation.setEasingCurve(QEasingCurve.Type.OutQuad)
 
         animation.start()  # Start the animation
-
-        print("Current:", rect)
-        print("Original:", original)
-        print("Expanded:", expand_rect)
 
     def shrink_button(
         self, button
