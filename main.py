@@ -16,4 +16,4 @@ window.show()
 sys.exit(app.exec())
 
 # pyside6-uic userInterface.ui -o ui_userInterface.py
-# pyside6-rcc resources.qrc -o resource_rc.py
+# pyside6-rcc resource.qrc -o resource_rc.py

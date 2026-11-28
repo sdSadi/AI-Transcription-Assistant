@@ -31,6 +31,7 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u":/images/icon.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
@@ -53,6 +54,10 @@ class Ui_MainWindow(object):
         self.frame_leftTop.setObjectName(u"frame_leftTop")
         self.frame_leftTop.setMinimumSize(QSize(0, 36))
         self.frame_leftTop.setMaximumSize(QSize(16777215, 36))
+        self.frame_leftTop.setStyleSheet(u"QFrame {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"}")
         self.frame_leftTop.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_leftTop.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_leftTop)
@@ -106,15 +111,111 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.tree_fileManager)
 
-        self.btn_userManual = QPushButton(self.frame_sidebar)
+        self.frame_userManual = QFrame(self.frame_sidebar)
+        self.frame_userManual.setObjectName(u"frame_userManual")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.frame_userManual.sizePolicy().hasHeightForWidth())
+        self.frame_userManual.setSizePolicy(sizePolicy1)
+        self.frame_userManual.setMinimumSize(QSize(28, 36))
+        self.frame_userManual.setStyleSheet(u"QFrame {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"}")
+        self.frame_userManual.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_userManual.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.frame_userManual)
+        self.horizontalLayout_4.setSpacing(2)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(4, 2, 4, 2)
+        self.btn_userManual = QPushButton(self.frame_userManual)
         self.btn_userManual.setObjectName(u"btn_userManual")
+        sizePolicy1.setHeightForWidth(self.btn_userManual.sizePolicy().hasHeightForWidth())
+        self.btn_userManual.setSizePolicy(sizePolicy1)
+        self.btn_userManual.setMinimumSize(QSize(0, 32))
+        self.btn_userManual.setStyleSheet(u"QPushButton {\n"
+"	text-align: left;\n"
+"	padding-left: 8px;\n"
+"	font: 700 9pt \"Arial Rounded MT Bold\";\n"
+"}")
 
-        self.verticalLayout.addWidget(self.btn_userManual)
+        self.horizontalLayout_4.addWidget(self.btn_userManual)
 
-        self.btn_settings = QPushButton(self.frame_sidebar)
+        self.btn_userManual_icon = QPushButton(self.frame_userManual)
+        self.btn_userManual_icon.setObjectName(u"btn_userManual_icon")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.btn_userManual_icon.sizePolicy().hasHeightForWidth())
+        self.btn_userManual_icon.setSizePolicy(sizePolicy2)
+        self.btn_userManual_icon.setMinimumSize(QSize(32, 32))
+        self.btn_userManual_icon.setMaximumSize(QSize(32, 32))
+        self.btn_userManual_icon.setStyleSheet(u"QPushButton {\n"
+"    border: none;\n"
+"    background-color: transparent;\n"
+"    padding: 0px;\n"
+"}")
+        icon1 = QIcon()
+        icon1.addFile(u":/images/userManual.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_userManual_icon.setIcon(icon1)
+        self.btn_userManual_icon.setIconSize(QSize(34, 34))
+
+        self.horizontalLayout_4.addWidget(self.btn_userManual_icon)
+
+        self.horizontalLayout_4.setStretch(0, 2)
+        self.horizontalLayout_4.setStretch(1, 1)
+
+        self.verticalLayout.addWidget(self.frame_userManual)
+
+        self.frame = QFrame(self.frame_sidebar)
+        self.frame.setObjectName(u"frame")
+        self.frame.setMinimumSize(QSize(0, 36))
+        self.frame.setStyleSheet(u"QFrame {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"}")
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame)
+        self.horizontalLayout_5.setSpacing(2)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(4, 2, 4, 2)
+        self.btn_settings = QPushButton(self.frame)
         self.btn_settings.setObjectName(u"btn_settings")
+        sizePolicy1.setHeightForWidth(self.btn_settings.sizePolicy().hasHeightForWidth())
+        self.btn_settings.setSizePolicy(sizePolicy1)
+        self.btn_settings.setMinimumSize(QSize(0, 32))
+        self.btn_settings.setStyleSheet(u"QPushButton {\n"
+"	text-align: left;\n"
+"	padding-left: 8px;\n"
+"	font: 700 9pt \"Arial Rounded MT Bold\";\n"
+"}")
 
-        self.verticalLayout.addWidget(self.btn_settings)
+        self.horizontalLayout_5.addWidget(self.btn_settings)
+
+        self.btn_settings_icon = QPushButton(self.frame)
+        self.btn_settings_icon.setObjectName(u"btn_settings_icon")
+        sizePolicy2.setHeightForWidth(self.btn_settings_icon.sizePolicy().hasHeightForWidth())
+        self.btn_settings_icon.setSizePolicy(sizePolicy2)
+        self.btn_settings_icon.setMinimumSize(QSize(32, 32))
+        self.btn_settings_icon.setMaximumSize(QSize(32, 32))
+        self.btn_settings_icon.setStyleSheet(u"QPushButton {\n"
+"    border: none;\n"
+"    background-color: transparent;\n"
+"    padding: 0px;\n"
+"}")
+        icon2 = QIcon()
+        icon2.addFile(u":/images/settings_icon.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_settings_icon.setIcon(icon2)
+        self.btn_settings_icon.setIconSize(QSize(34, 34))
+
+        self.horizontalLayout_5.addWidget(self.btn_settings_icon)
+
+        self.horizontalLayout_5.setStretch(0, 2)
+        self.horizontalLayout_5.setStretch(1, 1)
+
+        self.verticalLayout.addWidget(self.frame)
 
         self.verticalLayout.setStretch(2, 1)
 
@@ -128,6 +229,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame_topButtons = QFrame(self.frame_central)
         self.frame_topButtons.setObjectName(u"frame_topButtons")
+        self.frame_topButtons.setStyleSheet(u"QFrame {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"}")
         self.frame_topButtons.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_topButtons.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_topButtons)
@@ -138,11 +243,8 @@ class Ui_MainWindow(object):
 
         self.btn_voiceRecord = QPushButton(self.frame_topButtons)
         self.btn_voiceRecord.setObjectName(u"btn_voiceRecord")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.btn_voiceRecord.sizePolicy().hasHeightForWidth())
-        self.btn_voiceRecord.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.btn_voiceRecord.sizePolicy().hasHeightForWidth())
+        self.btn_voiceRecord.setSizePolicy(sizePolicy2)
         self.btn_voiceRecord.setMinimumSize(QSize(200, 200))
         self.btn_voiceRecord.setMaximumSize(QSize(240, 240))
         self.btn_voiceRecord.setStyleSheet(u"border-image: url(:/images/voice_recording.png);\n"
@@ -159,8 +261,8 @@ class Ui_MainWindow(object):
 
         self.btn_realTime = QPushButton(self.frame_topButtons)
         self.btn_realTime.setObjectName(u"btn_realTime")
-        sizePolicy1.setHeightForWidth(self.btn_realTime.sizePolicy().hasHeightForWidth())
-        self.btn_realTime.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.btn_realTime.sizePolicy().hasHeightForWidth())
+        self.btn_realTime.setSizePolicy(sizePolicy2)
         self.btn_realTime.setMinimumSize(QSize(200, 200))
         self.btn_realTime.setMaximumSize(QSize(240, 240))
         self.btn_realTime.setStyleSheet(u"border-image: url(:/images/real_time_speech.png);\n"
@@ -177,8 +279,8 @@ class Ui_MainWindow(object):
 
         self.btn_audioUpload = QPushButton(self.frame_topButtons)
         self.btn_audioUpload.setObjectName(u"btn_audioUpload")
-        sizePolicy1.setHeightForWidth(self.btn_audioUpload.sizePolicy().hasHeightForWidth())
-        self.btn_audioUpload.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.btn_audioUpload.sizePolicy().hasHeightForWidth())
+        self.btn_audioUpload.setSizePolicy(sizePolicy2)
         self.btn_audioUpload.setMinimumSize(QSize(200, 200))
         self.btn_audioUpload.setMaximumSize(QSize(240, 240))
         self.btn_audioUpload.setStyleSheet(u"QPushButton {\n"
@@ -232,8 +334,10 @@ class Ui_MainWindow(object):
         self.btn_collapse.setText(QCoreApplication.translate("MainWindow", u"\u2261", None))
         ___qtreewidgetitem = self.tree_fileManager.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Files", None))
-        self.btn_userManual.setText(QCoreApplication.translate("MainWindow", u"Help and Guide", None))
+        self.btn_userManual.setText(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.btn_userManual_icon.setText("")
         self.btn_settings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.btn_settings_icon.setText("")
         self.btn_voiceRecord.setText(QCoreApplication.translate("MainWindow", u"Voice Record", None))
         self.btn_realTime.setText(QCoreApplication.translate("MainWindow", u"Real Time", None))
         self.btn_audioUpload.setText(QCoreApplication.translate("MainWindow", u"Audio Upload", None))
